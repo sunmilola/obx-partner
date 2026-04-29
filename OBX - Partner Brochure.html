@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Consulting Partner Programme – TransformIQ (Structural Adoption Platform)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-light: #f8fafc;
+      --bg-mid: #e5e7eb;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --text-main: #0f172a;
+      --text-muted: #6b7280;
+      --white: #ffffff;
+      --border: #e5e7eb;
+      --radius: 8px;
+      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 16px 64px;
+    }
+
+    header {
+      padding: 16px 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .nav a:hover {
+      color: var(--accent);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease,
+        box-shadow 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--text-main);
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* HERO */
+    .hero {
+      padding: 40px 0 48px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: 2.4rem;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      max-width: 520px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .hero-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .hero-visual {
+      background: radial-gradient(circle at top left, var(--accent-soft), #eef2ff);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .hero-card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .hero-card-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 56px;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      max-width: 640px;
+    }
+
+    .section-dark {
+      background: var(--bg-dark);
+      color: var(--white);
+      border-radius: 20px;
+      padding: 28px 24px;
+    }
+
+    .section-dark .section-title {
+      color: var(--white);
+    }
+
+    .section-dark .section-subtitle {
+      color: #cbd5f5;
+    }
+
+    .pill-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      font-size: 0.85rem;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: #e5e7eb;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 18px 18px 16px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+      font-size: 0.9rem;
+    }
+
+    .card ul li {
+      margin-bottom: 6px;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .feature {
+      background: var(--bg-light);
+      border-radius: 16px;
+      padding: 16px 16px 14px;
+      border: 1px solid var(--border);
+    }
+
+    .feature-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .feature-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .model-card {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 16px 16px 14px;
+      background: var(--white);
+    }
+
+    .model-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .model-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .case-panel {
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      padding: 20px 18px 18px;
+      background: var(--bg-light);
+    }
+
+    .case-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .case-list {
+      list-style: none;
+      padding-left: 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .case-list li {
+      margin-bottom: 6px;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .case-list li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--text-main);
+    }
+
+    .why-now {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+      font-size: 0.98rem;
+      color: var(--text-muted);
+    }
+
+    .cta-panel {
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--accent), #1d4ed8);
+      color: var(--white);
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .cta-panel h2 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .cta-panel p {
+      font-size: 0.98rem;
+      margin-bottom: 18px;
+      color: #e5edff;
+    }
+
+    .cta-panel .btn-primary {
+      background: var(--white);
+      color: var(--accent);
+      box-shadow: none;
+    }
+
+    .cta-panel .btn-primary:hover {
+      background: #e5edff;
+    }
+
+    .cta-panel .btn-secondary {
+      border-color: rgba(255, 255, 255, 0.6);
+      color: #e5edff;
+      background: transparent;
+    }
+
+    .cta-panel .btn-secondary:hover {
+      background: rgba(15, 23, 42, 0.1);
+    }
+
+    footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    footer .links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">TransformIQ (Structural Adoption Platform)</div>
+      <nav class="nav">
+        <a href="#platform">Platform</a>
+        <a href="#partners">For Consulting Firms</a>
+        <a href="#models">Partner Models</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <h1 class="hero-title">Partner With Us to Deliver Transformation Success</h1>
+        <p class="hero-subtitle">
+          A structural adoption platform designed for consulting firms. Empower your teams, differentiate your firm, and deliver sustainable change for your clients.
+        </p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">Become a Consulting Partner</a>
+          <a href="#platform" class="btn btn-secondary">Book a 30‑Minute Overview</a>
+        </div>
+        <p class="hero-note">
+          White‑label the platform, embed it into your methodology, and make adoption measurable.
+        </p>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-tag">Partner‑Ready</div>
+        <div class="hero-card">
+          <div class="hero-card-title">From Delivery to Outcomes</div>
+          <div class="hero-card-text">
+            Move beyond activity and artefacts. Give clients a clear view of readiness, risk, and structural progress.
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-title">Built for Consulting Economics</div>
+          <div class="hero-card-text">
+            New revenue lines, recurring monitoring, and scalable delivery across practices and regions.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="section-dark">
+      <h2 class="section-title">Transformations Don’t Fail Because of Technology.</h2>
+      <p class="section-subtitle">
+        They fail because organisations aren’t structurally ready to change how they work. The real blockers are rarely visible on a project plan.
+      </p>
+      <div class="pill-list">
+        <div class="pill">Leadership misalignment</div>
+        <div class="pill">Unclear accountability</div>
+        <div class="pill">Incentives reinforcing old behaviours</div>
+        <div class="pill">Slow or ambiguous decision pathways</div>
+        <div class="pill">Capability gaps masked by training</div>
+        <div class="pill">Overload from competing initiatives</div>
+        <div class="pill">Informal power blocking progress</div>
+      </div>
+    </section>
+
+    <!-- CONSULTING GAP -->
+    <section>
+      <h2 class="section-title">Clients Expect Outcomes. Consulting Firms Need a Way to Deliver Them.</h2>
+      <p class="section-subtitle">
+        Your clients want measurable, sustainable change. Your teams need a repeatable, evidence‑based adoption engine that works across industries and programmes.
+      </p>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">The Pressure on Consulting Firms</div>
+          <div class="card-subtitle">Expectations are rising faster than traditional methods can keep up.</div>
+          <ul>
+            <li>Prove adoption, not just deliverables.</li>
+            <li>Provide measurable progress and structural insight.</li>
+            <li>Scale senior expertise across junior teams.</li>
+            <li>Differentiate in competitive transformation bids.</li>
+            <li>Deliver sustainable change, not short‑term activity.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">The Gap We Fill</div>
+          <div class="card-subtitle">A structural adoption platform you can fully white‑label.</div>
+          <ul>
+            <li>Diagnose readiness and structural risk.</li>
+            <li>Reveal role‑group divergence and blind spots.</li>
+            <li>Provide targeted, sequenced interventions.</li>
+            <li>Track structural improvement over time.</li>
+            <li>Support sustainability beyond programme closure.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLATFORM -->
+    <section id="platform">
+      <h2 class="section-title">The Structural Adoption Platform</h2>
+      <p class="section-subtitle">
+        A white‑label system for diagnosing, prioritising, and sustaining organisational change. Built to sit behind your brand and power your transformation offerings.
+      </p>
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="feature-title">Diagnose</div>
+          <div class="feature-text">
+            Assess structural conditions across key mechanisms. Segment results by leadership, management, and frontline roles. Identify hidden risks before they derail delivery.
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feature-title">Prescribe</div>
+          <div class="feature-text">
+            Use targeted intervention playbooks to align leadership, clarify accountability, adjust incentives, and uplift capability where it matters most.
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feature-title">Sustain</div>
+          <div class="feature-text">
+            Monitor structural health over time. Reinforce new behaviours through leadership routines. Support long‑term adoption beyond programme closure.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY PARTNER / WHY CLIENTS -->
+    <section id="partners">
+      <div class="two-col">
+        <div>
+          <h2 class="section-title">Why Consulting Firms Partner With Us</h2>
+          <div class="feature-grid">
+            <div class="feature">
+              <div class="feature-title">Differentiate Your Firm</div>
+              <div class="feature-text">
+                Stand out in competitive bids with a proprietary, evidence‑based adoption methodology your competitors don’t have.
+              </div>
+            </div>
+            <div class="feature">
+              <div class="feature-title">Scale Your Delivery</div>
+              <div class="feature-text">
+                Enable junior teams to deliver senior‑level adoption work using a structured, repeatable framework.
+              </div>
+            </div>
+            <div class="feature">
+              <div class="feature-title">Create New Revenue Streams</div>
+              <div class="feature-text">
+                Offer diagnostics, intervention design, and sustainability monitoring as billable services.
+              </div>
+            </div>
+            <div class="feature">
+              <div class="feature-title">Strengthen Client Relationships</div>
+              <div class="feature-text">
+                Provide clarity, insight, and measurable progress that clients can trust and act on.
+              </div>
+            </div>
+            <div class="feature">
+              <div class="feature-title">White‑Label Flexibility</div>
+              <div class="feature-text">
+                Rebrand the platform, outputs, and methodology under your firm’s identity and language.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2 class="section-title">Why Clients Value It</h2>
+          <div class="card">
+            <ul>
+              <li>Clear visibility of readiness and structural risk.</li>
+              <li>Objective, role‑segmented adoption insights.</li>
+              <li>A measurable adoption index to track progress.</li>
+              <li>Targeted interventions that address root causes.</li>
+              <li>Sustainability beyond go‑live and programme closure.</li>
+            </ul>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:10px;">
+              This bridges the gap between “technology delivered” and “change embedded.”
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNER MODELS -->
+    <section id="models">
+      <h2 class="section-title">Partner Models</h2>
+      <p class="section-subtitle">
+        Choose the partnership structure that best fits your strategy, client base, and delivery model.
+      </p>
+      <div class="model-grid">
+        <div class="model-card">
+          <div class="model-title">White‑Label Partnership</div>
+          <div class="model-text">
+            Embed the platform into your transformation offerings under your brand. You own the client relationship and delivery.
+          </div>
+        </div>
+        <div class="model-card">
+          <div class="model-title">Co‑Delivery Partnership</div>
+          <div class="model-text">
+            Joint delivery for complex or high‑risk programmes. You lead the engagement; we provide diagnostic and structural expertise.
+          </div>
+        </div>
+        <div class="model-card">
+          <div class="model-title">Enterprise Standard Partnership</div>
+          <div class="model-text">
+            Become the preferred implementation partner for clients adopting the platform across their entire transformation portfolio.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE EXAMPLE -->
+    <section>
+      <h2 class="section-title">Example Use Case</h2>
+      <p class="section-subtitle">
+        A generic illustration of how the platform supports consulting partners and their clients through complex change.
+      </p>
+      <div class="case-panel">
+        <div class="case-title">Large Organisation Undergoing Operational Transformation</div>
+        <ul class="case-list">
+          <li>Structural assessment conducted across four role groups.</li>
+          <li>Multiple adoption risks identified early in the programme.</li>
+          <li>Leadership alignment and accountability fixes implemented.</li>
+          <li>Capability uplift delivered across key teams.</li>
+          <li>Adoption index improved significantly within 12–16 weeks.</li>
+          <li>Transformation outcomes achieved and sustained over time.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- WHY NOW -->
+    <section>
+      <h2 class="section-title">Why Now</h2>
+      <p class="why-now">
+        Transformation is accelerating. Organisations are overloaded. Consulting firms need a scalable adoption engine. Clients expect measurable outcomes. This is the moment to define a new standard for transformation success.
+      </p>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact">
+      <div class="cta-panel">
+        <h2>Partner With Us</h2>
+        <p>
+          Equip your teams with a structural adoption engine. Deliver transformation with confidence. Build long‑term value for your clients — and your firm.
+        </p>
+        <div class="hero-ctas" style="justify-content:center; margin-bottom:0;">
+          <a href="#" class="btn btn-primary">Become a Consulting Partner</a>
+          <a href="#" class="btn btn-secondary">Request a Demo</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© TransformIQ - Structural Adoption Platform. All rights reserved.</div>
+      <div class="links">
+        <a href="#">About</a>
+        <a href="#">Partner Programme</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
